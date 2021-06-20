@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OtpFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="80dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/phone_number_text_view"
+            style="@style/SemiBoldTextViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+91 9876543210"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/enter_ph_num_text_view"
+            style="@style/BoldTextViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Enter The\nOTP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_number_text_view" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/otp_edit_text"
+            style="@style/BoldTextViewTheme"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/grey_round_corners"
+            android:cursorVisible="false"
+            android:gravity="center"
+            android:hint="9999"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_ph_num_text_view" />
+
+
+        <Button
+            android:id="@+id/continue_button"
+            style="@style/BoldTextViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/yellow_round_bg"
+            android:text="@string/continue_text"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/otp_edit_text" />
+
+        <ImageView
+            android:id="@+id/edit_phone_image_view"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_number_text_view"
+            app:layout_constraintStart_toEndOf="@+id/phone_number_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/otp_timer_text_view"
+            style="@style/BoldTextViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="12dp"
+            android:text="01:00"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/continue_button"
+            app:layout_constraintStart_toEndOf="@+id/continue_button"
+            app:layout_constraintTop_toBottomOf="@+id/otp_edit_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
