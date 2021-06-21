@@ -20,10 +20,10 @@ import io.reactivex.annotations.NonNull;
 
 public class LikesAdapter extends RecyclerView.Adapter<LikesAdapter.MyViewHolder> {
 
-    private List<ProfileModel.Likes.Profile__1> list;
-    private Context context;
+    private final List<ProfileModel.Likes.Profile__1> list;
+    private final Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView profileImage;
         TextView nameTextView;
 

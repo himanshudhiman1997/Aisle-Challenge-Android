@@ -125,7 +125,7 @@ public class OtpFragment extends Fragment {
             }
 
             public void onFinish() {
-                otpTimer.setText("Resend");
+                otpTimer.setText(R.string.resend);
             }
 
         }.start();

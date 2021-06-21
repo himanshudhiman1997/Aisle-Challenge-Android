@@ -43,18 +43,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/get_otp_text_view" />
 
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/country_code_text_input_layout"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="12dp"-->
-        <!--        app:boxBackgroundColor="@color/white"-->
-        <!--        app:boxStrokeColor="#FFF"-->
-        <!--        app:boxStrokeWidth="0dp"-->
-        <!--        app:boxStrokeWidthFocused="0dp"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/enter_ph_num_text_view">-->
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/country_code_edit_text"
             style="@style/BoldTextViewTheme"
@@ -65,7 +53,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:gravity="center"
-            android:hint="+91"
+            android:hint="@string/_91"
             android:inputType="numberDecimal"
             android:maxLength="4"
             android:textColor="@color/black"
@@ -73,18 +61,6 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/enter_ph_num_text_view" />
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="12dp"-->
-        <!--        app:boxBackgroundColor="@color/white"-->
-        <!--        app:boxStrokeColor="#FFF"-->
-        <!--        app:boxStrokeWidth="0dp"-->
-        <!--        app:boxStrokeWidthFocused="0dp"-->
-        <!--        app:layout_constraintStart_toEndOf="@+id/country_code_text_input_layout"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/enter_ph_num_text_view">-->
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/number_edit_text"
@@ -92,12 +68,11 @@
             android:layout_width="147dp"
             android:layout_height="36dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/grey_round_corners"
             android:cursorVisible="false"
             android:gravity="center"
-            android:hint="9876543210"
+            android:hint="@string/_9876543210"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:textColor="@color/black"
@@ -105,7 +80,6 @@
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/country_code_edit_text"
             app:layout_constraintTop_toBottomOf="@+id/enter_ph_num_text_view" />
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/continue_button"

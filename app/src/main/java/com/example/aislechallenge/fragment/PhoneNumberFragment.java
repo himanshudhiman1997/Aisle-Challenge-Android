@@ -27,7 +27,6 @@ public class PhoneNumberFragment extends Fragment {
 
     ViewModelClass viewModelClass = null;
     TextInputEditText phoneEditText;
-    String phone = "";
 
     ProgressBar progressBar;
 

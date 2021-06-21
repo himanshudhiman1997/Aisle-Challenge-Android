@@ -33,10 +33,10 @@ import java.util.List;
 public class DiscoverFragment extends Fragment {
 
     private static final String TOKEN = "token";
-    ViewModelClass viewModelClass = null;
+    private ViewModelClass viewModelClass = null;
 
-    TextView nameAgeTextView;
-    ImageView userImageView;
+    private TextView nameAgeTextView;
+    private ImageView userImageView;
 
     private LikesAdapter likesAdapter;
     private RecyclerView likesRecyclerView;
@@ -73,7 +73,6 @@ public class DiscoverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
         viewModelClass = ViewModelProviders.of(DiscoverFragment.this).get(ViewModelClass.class);
-        //viewModelClass.getRetrofitObj("32c7794d2e6a1f7316ef35aa1eb34541");
         viewModelClass.getRetrofitObj(token);
 
         nameAgeTextView = view.findViewById(R.id.name_age_text_view);

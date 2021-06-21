@@ -12,8 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
 
-    private static Retrofit retrofit = null;
-
 
     public static Retrofit getClient(String authToken) {
 
@@ -33,11 +31,10 @@ public class APIClient {
                 .build();
 
 
-        retrofit = new Retrofit.Builder().baseUrl("https://testa2.aisle.co/V1/users/")
+        return new Retrofit.Builder().baseUrl("https://testa2.aisle.co/V1/users/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build();
-        return retrofit;
 
     }
 }

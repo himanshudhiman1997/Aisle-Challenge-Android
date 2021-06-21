@@ -13,6 +13,8 @@ import com.example.aislechallenge.model.LoginModel;
 import com.example.aislechallenge.model.OtpModel;
 import com.example.aislechallenge.model.ProfileModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -22,9 +24,9 @@ import retrofit2.Response;
 public class ViewModelClass extends ViewModel {
 
     APIInterface apiInterface;
-    private MutableLiveData<LoginModel> loginRequest = new MutableLiveData<>();
-    private MutableLiveData<OtpModel> verifyOtpRequest = new MutableLiveData<>();
-    private MutableLiveData<ProfileModel> profileRequest = new MutableLiveData<>();
+    private final MutableLiveData<LoginModel> loginRequest = new MutableLiveData<>();
+    private final MutableLiveData<OtpModel> verifyOtpRequest = new MutableLiveData<>();
+    private final MutableLiveData<ProfileModel> profileRequest = new MutableLiveData<>();
 
     public void getRetrofitObj(String authToken) {
         apiInterface = APIClient.getClient(authToken).create(APIInterface.class);
@@ -37,7 +39,7 @@ public class ViewModelClass extends ViewModel {
 
         call.enqueue(new Callback<LoginModel>() {
             @Override
-            public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+            public void onResponse(@NotNull Call<LoginModel> call, @NotNull Response<LoginModel> response) {
                 loginRequest.setValue(response.body());
                 assert response.body() != null;
                 if (!response.body().getStatus()) {
@@ -46,7 +48,7 @@ public class ViewModelClass extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<LoginModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<LoginModel> call, @NotNull Throwable t) {
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
@@ -60,7 +62,7 @@ public class ViewModelClass extends ViewModel {
 
         call.enqueue(new Callback<OtpModel>() {
             @Override
-            public void onResponse(Call<OtpModel> call, Response<OtpModel> response) {
+            public void onResponse(@NotNull Call<OtpModel> call, @NotNull Response<OtpModel> response) {
                 verifyOtpRequest.setValue(response.body());
                 assert response.body() != null;
                 if (response.body().getToken() == null) {
@@ -69,7 +71,7 @@ public class ViewModelClass extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<OtpModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<OtpModel> call, @NotNull Throwable t) {
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
@@ -81,12 +83,12 @@ public class ViewModelClass extends ViewModel {
         Call<ProfileModel> call = apiInterface.profileList();
         call.enqueue(new Callback<ProfileModel>() {
             @Override
-            public void onResponse(Call<ProfileModel> call, Response<ProfileModel> response) {
+            public void onResponse(@NotNull Call<ProfileModel> call, @NotNull Response<ProfileModel> response) {
                 profileRequest.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ProfileModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<ProfileModel> call, @NotNull Throwable t) {
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

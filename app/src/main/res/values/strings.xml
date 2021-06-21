@@ -12,4 +12,11 @@
     <string name="matches">Matches</string>
     <string name="profile">Profile</string>
     <string name="upgrade">Upgrade</string>
+    <string name="premium_upgrade">Premium members can<br />view all their likes at once</string>
+    <string name="enter_otp">Enter The<br />OTP</string>
+    <string name="_9999">9999</string>
+    <string name="enter_phone">Enter Your<br />Phone Number</string>
+    <string name="_91">+91</string>
+    <string name="_9876543210">9876543210</string>
+    <string name="resend">Resend</string>
 </resources>
