@@ -1,5 +1,6 @@
-package com.example.aislechallenge;
+package com.example.aislechallenge.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,21 +14,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aislechallenge.model.LoginModel;
+import com.example.aislechallenge.activity.HomeActivity;
+import com.example.aislechallenge.R;
+import com.example.aislechallenge.utils.ViewModelClass;
 import com.example.aislechallenge.model.OtpModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link OtpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class OtpFragment extends Fragment {
 
     ViewModelClass viewModelClass = null;
@@ -37,17 +36,10 @@ public class OtpFragment extends Fragment {
     private String phone;
 
     TextInputEditText otpEditText;
+    private ProgressBar progressBar;
 
     public OtpFragment() {
         // Required empty public constructor
-    }
-
-    public static OtpFragment newInstance(String phone) {
-        OtpFragment fragment = new OtpFragment();
-        Bundle args = new Bundle();
-        args.putString(PHONE, phone);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -65,9 +57,10 @@ public class OtpFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_otp, container, false);
 
         viewModelClass = ViewModelProviders.of(OtpFragment.this).get(ViewModelClass.class);
-        viewModelClass.getRetrofitObj();
+        viewModelClass.getRetrofitObj("");
 
         otpEditText = view.findViewById(R.id.otp_edit_text);
+        progressBar = view.findViewById(R.id.otp_progress_bar);
 
         TextView phoneNumberTextView = view.findViewById(R.id.phone_number_text_view);
         phoneNumberTextView.setText(phone);
@@ -85,6 +78,7 @@ public class OtpFragment extends Fragment {
             public void onClick(View v) {
 
                 //verify otp
+                progressBar.setVisibility(View.VISIBLE);
                 verifyOtp();
 
             }
@@ -100,12 +94,15 @@ public class OtpFragment extends Fragment {
                 public void onChanged(OtpModel otpModel) {
                     if (otpModel.getToken() != null) {
                         //do the intent to home screen
+                        progressBar.setVisibility(View.GONE);
+                        Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                        homeIntent.putExtra("token", otpModel.getToken());
+                        startActivity(homeIntent);
                     }
 
                 }
             });
-        }
-        else {
+        } else {
             Toast.makeText(getContext(), "Enter the otp", Toast.LENGTH_LONG).show();
         }
     }

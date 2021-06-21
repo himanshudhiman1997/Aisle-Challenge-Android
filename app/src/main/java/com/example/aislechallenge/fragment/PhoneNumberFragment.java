@@ -1,4 +1,4 @@
-package com.example.aislechallenge;
+package com.example.aislechallenge.fragment;
 
 
 import android.os.Bundle;
@@ -13,8 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.aislechallenge.R;
+import com.example.aislechallenge.utils.ViewModelClass;
 import com.example.aislechallenge.model.LoginModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -25,6 +28,8 @@ public class PhoneNumberFragment extends Fragment {
     ViewModelClass viewModelClass = null;
     TextInputEditText phoneEditText;
     String phone = "";
+
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class PhoneNumberFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_phone_number, container, false);
 
         viewModelClass = ViewModelProviders.of(PhoneNumberFragment.this).get(ViewModelClass.class);
-        viewModelClass.getRetrofitObj();
+        viewModelClass.getRetrofitObj("");
 
 
         return view;
@@ -49,12 +54,16 @@ public class PhoneNumberFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         phoneEditText = view.findViewById(R.id.number_edit_text);
+        progressBar = view.findViewById(R.id.phone_progress_bar);
+
         Button continueButton = view.findViewById(R.id.continue_button);
+
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //get the otp
+                progressBar.setVisibility(View.VISIBLE);
                 sendPhoneNumberForLogin();
 
             }
@@ -69,7 +78,7 @@ public class PhoneNumberFragment extends Fragment {
                 public void onChanged(LoginModel loginModel) {
                     if (loginModel.getStatus()) {
                         //change the fragment
-
+                        progressBar.setVisibility(View.GONE);
                         Bundle bundle = new Bundle();
                         bundle.putString("phone", "+91" + phoneEditText.getText().toString());
                         OtpFragment otpFragment = new OtpFragment();

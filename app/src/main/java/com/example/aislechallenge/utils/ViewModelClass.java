@@ -1,4 +1,4 @@
-package com.example.aislechallenge;
+package com.example.aislechallenge.utils;
 
 import android.app.Activity;
 import android.widget.Toast;
@@ -11,6 +11,7 @@ import com.example.aislechallenge.api.APIClient;
 import com.example.aislechallenge.api.APIInterface;
 import com.example.aislechallenge.model.LoginModel;
 import com.example.aislechallenge.model.OtpModel;
+import com.example.aislechallenge.model.ProfileModel;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -23,10 +24,10 @@ public class ViewModelClass extends ViewModel {
     APIInterface apiInterface;
     private MutableLiveData<LoginModel> loginRequest = new MutableLiveData<>();
     private MutableLiveData<OtpModel> verifyOtpRequest = new MutableLiveData<>();
+    private MutableLiveData<ProfileModel> profileRequest = new MutableLiveData<>();
 
-
-    public void getRetrofitObj() {
-        apiInterface = APIClient.getClient().create(APIInterface.class);
+    public void getRetrofitObj(String authToken) {
+        apiInterface = APIClient.getClient(authToken).create(APIInterface.class);
 
     }
 
@@ -62,8 +63,7 @@ public class ViewModelClass extends ViewModel {
             public void onResponse(Call<OtpModel> call, Response<OtpModel> response) {
                 verifyOtpRequest.setValue(response.body());
                 assert response.body() != null;
-                if (response.body().getToken() == null)
-                {
+                if (response.body().getToken() == null) {
                     Toast.makeText(activity, "Enter the correct otp", Toast.LENGTH_LONG).show();
                 }
             }
@@ -77,5 +77,20 @@ public class ViewModelClass extends ViewModel {
         return verifyOtpRequest;
     }
 
+    public LiveData<ProfileModel> profileList(final Activity activity) {
+        Call<ProfileModel> call = apiInterface.profileList();
+        call.enqueue(new Callback<ProfileModel>() {
+            @Override
+            public void onResponse(Call<ProfileModel> call, Response<ProfileModel> response) {
+                profileRequest.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ProfileModel> call, Throwable t) {
+                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return profileRequest;
+    }
 
 }

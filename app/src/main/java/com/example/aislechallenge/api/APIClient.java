@@ -15,7 +15,7 @@ public class APIClient {
     private static Retrofit retrofit = null;
 
 
-    public static Retrofit getClient() {
+    public static Retrofit getClient(String authToken) {
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -24,9 +24,9 @@ public class APIClient {
                         Request.Builder ongoing = chain.request().newBuilder();
                         ongoing.addHeader("__cfduid", "df9b865983bd04a5de2cf5017994bbbc71618565720");
                         ongoing.addHeader("Content-Type", "application/json");
-//                    if (isUserLoggedIn()) {
-//                        ongoing.addHeader("Authorization", getToken());
-//                    }
+                    if (!authToken.equals("")) {
+                        ongoing.addHeader("Authorization", authToken);
+                    }
                         return chain.proceed(ongoing.build());
                     }
                 })

@@ -1,13 +1,11 @@
-package com.example.aislechallenge;
+package com.example.aislechallenge.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.widget.TextView;
+
+import com.example.aislechallenge.R;
+import com.example.aislechallenge.fragment.PhoneNumberFragment;
 
 public class MainActivity extends AppCompatActivity {
 
