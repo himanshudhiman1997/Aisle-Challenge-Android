@@ -10,4 +10,4 @@ This app is made as a challenge given by the Aisle company.
 <img src="screenshots/otp.png" alt="Otp screen" width="250" height="450">
 
 
-<img src="screenshots/home.png" alt="Home screen" width="250" height="450">
+<img src="screenshots/home.png" alt="Home screen" width="250" height="550">
